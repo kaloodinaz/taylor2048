@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#151515" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>テイラー・スウィフト版2048ゲームで遊ぼう！</title>
+  <meta name="description" content="2048 Taylor Swiftは、テイラー・スウィフトのアルバムや写真をテーマにした楽しいパズルゲームです。スライドして同じタイルを合体させ、最高のスコアを目指しましょう！">
+  <link href="main.css?v=2" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="https://kaloodinaz.github.io/2048-reverse/apple-touch-icon.png">
+  <link rel="apple-touch-startup-image" href="https://kaloodinaz.github.io/2048-reverse/apple-touch-startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone 5+ -->
+  <link rel="apple-touch-startup-image" href="https://kaloodinaz.github.io/2048-reverse/apple-touch-startup-image-640x920.png"  media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone, retina -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+ <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <style>
+.navbar{background-color:#333;border-radius:5px;overflow:hidden}
+.navbar .navbar-header{float:left}
+.navbar .nav{list-style:none;margin:0;padding:0;overflow:hidden}
+.navbar .nav li{float:left}
+.navbar .nav li a{display:block;color:#fff;text-align:center;padding:7px 10px;text-decoration:none;transition:background-color .3s}
+.navbar .nav li a:hover{background-color:#575757}
+.navbar .nav li.active a{background-color:#575757}
+.container-fluid{max-width:1200px;margin:0 auto;padding:0 15px}
+@media (max-width: 768px) {
+.navbar .nav{float:none;clear:both;text-align:center}
+.navbar .nav li{float:none;display:inline-block}
+.navbar .nav li a{display:inline-block;padding:5px 10px;font-size:16px}
+}
+.navbar .menu-btn{display:none;background-color:#333;color:#fff;padding:7px 10px;text-align:center;border:none;cursor:pointer;font-size:16px}
+@media (max-width: 768px) {
+.navbar .menu-btn{display:block}
+}
+.navbar .nav-responsive{display:none}
+@media (max-width: 768px) {
+.navbar .nav-responsive{display:block;text-align:center}
+.navbar .nav-responsive li{display:block;float:none}
+}
+.block{display:flex;justify-content:center;align-items:center;margin:0 auto}
+.block-300{display:none;width:100%;height:250px;background-color:#181818}
+.block-728{display:none;width:100%;max-width:728px;height:90px;background-color:#292929}
+@media only screen and (max-width: 738px) {
+.block-300{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;margin-bottom:10px;border-radius:10px;margin-top:10px}
+.block-728{display:none}
+}
+@media only screen and (min-width: 739px) {
+.block-728{display:flex;justify-content:center;align-items:center;margin-bottom:10px;border-radius:10px;margin-top:10px}
+.block-300{display:none}
+}
+</style>
+</head>
+<body>
+  <script>
+    if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/sw.js')
+    .then(registration => {console.log('Service Worker registered successfully:', registration);})
+    .catch(error => {console.log('Error in Service Worker registration:', error);});});}
+    </script>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/">ホーム</a></li>
+      <li><a href="https://kaloodinaz.github.io/2048-online/">2048クラシックゲーム</a></li>
+      <li><a href="https://2048cupcakes.co.uk/">2048カップケーキ</a></li>
+      <li><a href="https://kaloodinaz.github.io/doge2048">ドージェ2048</a></li>
+     
+    </ul>
+  </div>
+</nav>	
+  <div class="container">
+    <div class="heading"><h1 class="title">2048テイラースウィフトゲーム</h1>  </div>
+
+    <div class="block block-728"><script type="text/javascript">
+	atOptions = {
+		'key' : 'd1d26e15f7c349fd8e403bb5ea491a31',
+		'format' : 'iframe',
+		'height' : 90,
+		'width' : 728,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/d1d26e15f7c349fd8e403bb5ea491a31/invoke.js"></script></div>
+    <div class="block block-300"><script type="text/javascript">
+	atOptions = {
+		'key' : '0fee57062f9bb330edc13a4e4349876d',
+		'format' : 'iframe',
+		'height' : 250,
+		'width' : 300,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/0fee57062f9bb330edc13a4e4349876d/invoke.js"></script></div>
+
+ <a class="restart-button">ニューゲーム</a>
+      <div class="scores-container">
+        <div class="score-container">0</div>
+        <div class="best-container">0</div>
+      </div>
+  
+
+    <div class="above-game">
+      <p class="game-intro">の数字の語呂合わせを見つけます。 <strong>2048 テイラー・スウィフト</strong></p>
+    </div>
+
+    <div class="game-container">
+      <div class="game-message">
+        <p></p>
+        <div class="lower">
+	        <a class="keep-playing-button">続ける</a>
+          <a class="retry-button">再試行</a>
+        </div>
+      </div>
+
+      <div class="grid-container">
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+      </div>
+
+      <div class="tile-container">
+
+      </div>
+    </div>
+
+    <p class="game-explanation">
+      <strong class="important">プレーの仕方:</strong> 矢印キーでタイルを動かす。同じ数字の2つのタイルが触れると、1つに合体します！
+    </p>
+    <hr>
+
+      <h1>2048 Taylor Swiftとは？</h1>
+      <p><strong>2048 Taylor Swift</strong>は、人気パズルゲーム「2048」をテイラー・スウィフト仕様にアレンジしたファン必見のゲームです。同じテイラーのアルバムカバーや写真をスライドで合わせて、より高いレベルのタイルを作り出し、目指せ最高得点！</p>
+    
+      <h2>遊び方</h2>
+      <p>キーボードの矢印キー（またはスマホならスワイプ操作）でタイルを移動させます。同じ画像のタイル同士がぶつかると合体し、新しいテイラー・スウィフトの画像タイルが誕生します。ゲームオーバーにならないように、タイルをうまくまとめながらプレイを続けましょう。</p>
+    
+      <h2>特徴</h2>
+      <ul>
+        <li>テイラー・スウィフトの美しいアルバムカバーや写真を使用</li>
+        <li>シンプルながら中毒性のあるゲームプレイ</li>
+        <li>PCでもスマホでも快適に遊べる</li>
+        <li>ファンならではの特別な達成感が味わえる</li>
+      </ul>
+    
+      <h2>まとめ</h2>
+      <p>テイラー・スウィフトが好きな方にはたまらない、特別バージョンの2048ゲームです。スキマ時間に挑戦したり、ハイスコアを目指して何度でも遊べます。ぜひ、<strong>2048 Taylor Swift</strong>をプレイして、あなたのスライドテクニックを試してみてください！</p>
+    
+      
+      <hr>
+       <p><strong>2048 テイラー・スウィフト</strong> の拡張版である。 <a href="https://kaloodinaz.github.io/game/2048/" target="_blank">2048年ゲーム</a>, 標準的な4x4のボードの代わりに4x4のグリッドを備えています。このバリエーションは、より戦略的なアプローチでタイルを合体させることができるので、長時間のゲームプレイを楽しみたいプレイヤーに最適です。.</p>
+    <hr>
+    <p>
+      による4×4のテンポの速いバージョン。 <a target="_blank" href="https://kaloodinaz.github.io/">Kaloo Dinaz</a> は
+      からクローンされた。 <a target="_blank" href="https://kaloodinaz.github.io/2048-online/">2048年ゲーム</a> authored by
+      <a target="_blank" href="https://github.com/kaloodinaz/">Kaloo Dinaz</a>.
+    </p>
+    
+  </div>
+
+  <script defer src="main.js"></script>
+
+</body>
+</html>
